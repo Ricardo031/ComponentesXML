@@ -11,22 +11,31 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class spinnerFragment extends Fragment {
     String[] paises={"Argentina", "Bolivia", "Brazil", "Colombia", "Chile"};
     int[] banderas = {R.drawable.argentina, R.drawable.bolivia, R.drawable.brazil, R.drawable.colombia, R.drawable.chile};
     Spinner spinner;
+    Button btn1;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_spinner, container, false);
         spinner = view.findViewById(R.id.spinner);
+        btn1 = view.findViewById(R.id.btn1);
         PaisesAdapter adaptador1 = new PaisesAdapter();
         spinner.setAdapter(adaptador1);
-        return view;
 
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(requireContext(), spinner.getSelectedItem().toString(), Toast.LENGTH_LONG).show();            }
+        });
+        return view;
     }
 
     class PaisesAdapter extends BaseAdapter {
